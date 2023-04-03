@@ -138,7 +138,16 @@ public class Model extends Observable {
      * */
     public static boolean emptySpaceExists(Board b) {
         // TODO: Fill in this function.
-        return false;
+        int num=b.size();
+        boolean flag=false;
+        for(int i=0;i<num;i++){
+            for(int j=0;j<num;j++){
+                if(b.tile(i,j) == null){
+                    flag=true;
+                }
+            }
+        }
+        return flag;
     }
 
     /**
@@ -148,7 +157,16 @@ public class Model extends Observable {
      */
     public static boolean maxTileExists(Board b) {
         // TODO: Fill in this function.
-        return false;
+        int num=b.size();
+        boolean flag=false;
+        for(int i=0;i<num;i++){
+            for(int j=0;j<num;j++){
+                if(b.tile(i,j)!=null &&b.tile(i,j).value() == MAX_PIECE){
+                    flag=true;
+                }
+            }
+        }
+        return flag;
     }
 
     /**
@@ -159,6 +177,46 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+        if(emptySpaceExists(b))
+            return true;
+        boolean flag=false;
+        int num=b.size();
+        if (b.tile(0,0).value()==b.tile(0,1).value()||
+                b.tile(0,0).value()==b.tile(1,0).value()||
+                b.tile(0,num-1).value()==b.tile(0,num-2).value()||
+                b.tile(0,num-1).value()==b.tile(1,num-1).value()||
+                b.tile(num-1,0).value()==b.tile(num-1,1).value()||
+                b.tile(num-1,0).value()==b.tile(num-2,0).value()||
+                b.tile(num-1,num-1).value()==b.tile(num-2,num-1).value()||
+                b.tile(num-1,num-1).value()==b.tile(num-1,num-2).value()){
+            return true;
+        }
+        for(int i=1;i<num-1;++i){
+            if(b.tile(i,0).value()==b.tile(i+1,0).value()||
+            b.tile(i,0).value()==b.tile(i-1,0).value()||
+                    b.tile(i,num-1).value()==b.tile(i+1,num-1).value()||
+                    b.tile(i,num-1).value()==b.tile(i-1,num-1).value()){
+                return true;
+            }
+        }
+        for(int i=1;i<num-1;++i){
+            if(b.tile(0,i).value()==b.tile(0,i+1).value()||
+                    b.tile(0,i).value()==b.tile(0,i-1).value()||
+                    b.tile(num-1,i).value()==b.tile(num-1,i-1).value()||
+                    b.tile(num-1,i).value()==b.tile(num-1,i+1).value()){
+                return true;
+            }
+        }
+        for(int i=1;i<num-1;i++){
+            for(int j=1;j<num-1;j++){
+                if(b.tile(i,j).value() == b.tile(i-1,j).value()||
+                        b.tile(i,j).value() == b.tile(i+1,j).value()||
+                        b.tile(i,j).value() == b.tile(i,j+1).value()||
+                        b.tile(i,j).value() == b.tile(i,j-1).value()){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
