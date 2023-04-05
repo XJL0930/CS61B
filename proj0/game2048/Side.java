@@ -18,9 +18,9 @@ public enum Side {
      *          above it on the reoriented board.
      *  The idea behind going to this trouble is that by using the
      *  col() and row() methods below to translate from reoriented to
-     *  standard coordinates, one can arrange to use exactly the same code
-     *  to compute the result of tilting the board in any particular
-     *  direction. */
+     *      *  standard coordinates, one can arrange to use exactly the same code
+     *      *  to compute the result of tilting the board in any particular
+     *      *  direction. */
 
     NORTH(0, 0, 0, 1), EAST(0, 1, 1, 0), SOUTH(1, 1, 0, -1),
     WEST(1, 0, -1, 0);
